@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Playground</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .box { width: 100px; height: 100px; background: red; margin: 20px auto; transition: 0.5s; }
+        .hidden { display: none; }
+        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 20px; background: white; border: 2px solid black; box-shadow: 0 0 10px gray; }
+    </style>
+</head>
+<body>
+    <h1>Magic Playground</h1>
+    
+    <button id="colorBtn">Change Box Color</button>
+    <div class="box" id="magicBox"></div>
+    
+    <button id="moveBtn">Move Box</button>
+    
+    <h2>Form Validation</h2>
+    <form id="nameForm">
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button type="submit">Submit</button>
+        <p id="error" style="color: red;"></p>
+    </form>
+    
+    <button id="modalBtn">Open Modal</button>
+    <div class="modal hidden" id="modal">
+        <p>Welcome to the Magic Playground!</p>
+        <button id="closeModal">Close</button>
+    </div>
+    
+    <script>
+        document.getElementById('colorBtn').addEventListener('click', function() {
+            const box = document.getElementById('magicBox');
+            box.style.background = box.style.background === 'blue' ? 'red' : 'blue';
+        });
+
+        document.getElementById('moveBtn').addEventListener('click', function() {
+            const box = document.getElementById('magicBox');
+            box.style.transform = `translate(${Math.random() * 200}px, ${Math.random() * 200}px)`;
+        });
+
+        document.getElementById('nameForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('nameInput');
+            const error = document.getElementById('error');
+            if (nameInput.value.trim() === '') {
+                error.textContent = 'Please enter your name!';
+            } else {
+                error.textContent = '';
+                alert('Hello, ' + nameInput.value + '!');
+            }
+        });
+
+        document.getElementById('modalBtn').addEventListener('click', function() {
+            document.getElementById('modal').classList.remove('hidden');
+        });
+
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('modal').classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
